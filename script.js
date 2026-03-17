@@ -795,17 +795,17 @@ function parentLine(father, mother, fatherDeceased, motherDeceased) {
 })();
 
 /* =========================
-   SIMPLE WEDDING BGM
+   FINAL FIX BGM
 ========================= */
 
-const bgm = document.getElementById("bgm");
+window.addEventListener("DOMContentLoaded", () => {
+  const bgm = document.getElementById("bgm");
+  if (!bgm) return;
 
-if (bgm) {
-  bgm.volume = 0; // 처음 무음
+  bgm.volume = 0;
 
   function startBGM() {
     bgm.play().then(() => {
-      // 부드러운 페이드 인
       let vol = 0;
       const fade = setInterval(() => {
         if (vol < 1) {
@@ -815,7 +815,17 @@ if (bgm) {
           clearInterval(fade);
         }
       }, 120);
-    }).catch(() => {});
+    }).catch((e) => {
+      console.log("재생 실패:", e);
+    });
+
+    document.removeEventListener("click", startBGM);
+    document.removeEventListener("touchstart", startBGM);
+  }
+
+  document.addEventListener("click", startBGM);
+  document.addEventListener("touchstart", startBGM);
+});
 
     document.removeEventListener("click", startBGM);
     document.removeEventListener("touchstart", startBGM);
