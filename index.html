@@ -278,5 +278,28 @@
   </main>
 
   <script src="script.js"></script>
+
+<!-- ✅ BGM 추가 (여기에 붙여넣기) -->
+<audio id="bgm" loop>
+  <source src="audio/bgm.mp3" type="audio/mpeg">
+</audio>
+
+  /* =========================
+   BGM START
+========================= */
+
+const bgm = document.getElementById("bgm");
+
+// 첫 사용자 터치 시 음악 시작 (모바일 대응)
+document.addEventListener(
+  "click",
+  () => {
+    if (bgm) {
+      bgm.play().catch(() => {});
+    }
+  },
+  { once: true }
+);
+  
 </body>
 </html>
