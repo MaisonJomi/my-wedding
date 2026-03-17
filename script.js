@@ -815,9 +815,7 @@ window.addEventListener("DOMContentLoaded", () => {
           clearInterval(fade);
         }
       }, 120);
-    }).catch((e) => {
-      console.log("재생 실패:", e);
-    });
+    }).catch(() => {});
 
     document.removeEventListener("click", startBGM);
     document.removeEventListener("touchstart", startBGM);
@@ -826,11 +824,3 @@ window.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", startBGM);
   document.addEventListener("touchstart", startBGM);
 });
-
-    document.removeEventListener("click", startBGM);
-    document.removeEventListener("touchstart", startBGM);
-  }
-
-  document.addEventListener("click", startBGM);
-  document.addEventListener("touchstart", startBGM);
-}
