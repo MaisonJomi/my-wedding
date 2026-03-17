@@ -793,3 +793,34 @@ function parentLine(father, mother, fatherDeceased, motherDeceased) {
     init();
   }
 })();
+
+/* =========================
+   SIMPLE WEDDING BGM
+========================= */
+
+const bgm = document.getElementById("bgm");
+
+if (bgm) {
+  bgm.volume = 0; // 처음 무음
+
+  function startBGM() {
+    bgm.play().then(() => {
+      // 부드러운 페이드 인
+      let vol = 0;
+      const fade = setInterval(() => {
+        if (vol < 1) {
+          vol += 0.05;
+          bgm.volume = vol;
+        } else {
+          clearInterval(fade);
+        }
+      }, 120);
+    }).catch(() => {});
+
+    document.removeEventListener("click", startBGM);
+    document.removeEventListener("touchstart", startBGM);
+  }
+
+  document.addEventListener("click", startBGM);
+  document.addEventListener("touchstart", startBGM);
+}
